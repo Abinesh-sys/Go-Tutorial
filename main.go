@@ -23,4 +23,10 @@ func main() {
 	for i:=0;i<5;i++ {
 		fmt.Println(i)
 	}
+
+	fmt.Println(add(5, 6))
+}
+
+func add(a int, b int) int {
+	return a+b
 }
