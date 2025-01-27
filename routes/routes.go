@@ -9,5 +9,6 @@ func SetupRoutes(app *fiber.App) {
 	
 	fmt.Println("Routes")
 	app.Get("/", controllers.GetHome)        
-	app.Get("/users", controllers.GetUsers)       
+	app.Get("/users", controllers.GetUsers)
+	app.Get("/api/users", controllers.GetUsersJSON)
 }
