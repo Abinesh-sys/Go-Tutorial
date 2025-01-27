@@ -4,4 +4,5 @@ COPY . .
 RUN CGO_ENABLE=0 GOOS=linux go build -o go-tutorial .
 FROM scratch
 COPY --from=builder /app/go-tutorial .
+COPY ./views ./views 
 CMD ["./go-tutorial"]
