@@ -25,8 +25,16 @@ func main() {
 	}
 
 	fmt.Println(add(5, 6))
+
+	p := Person{"Jhon Wick", 52}
+	fmt.Printf("Name: %s\nAge: %d\n", p.Name, p.Age)
 }
 
 func add(a int, b int) int {
 	return a+b
+}
+
+type Person struct {
+	Name string
+	Age int
 }
