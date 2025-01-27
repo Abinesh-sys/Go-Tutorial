@@ -49,5 +49,6 @@ type Person struct {
 func printNumber (n int, wg *sync.WaitGroup) {
 	defer wg.Done()
 	time.Sleep(1 *time.Second)
+	time.Sleep(time.Duration(n))
 	fmt.Println(n)
 }
