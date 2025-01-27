@@ -4,3 +4,33 @@ services:
     build: .
     image: go-tutorial:latest
     container_name: my-go-tutorial
+
+  db:
+    images: postgres:13
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: postgres_pass 
+      POSTGRES_DB: postgres_db_name
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      -postgres_data:/var/lib/postgresql/data
+
+    networks:
+      - go-postgres-network
+    
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres_user -d postgres_db_name"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  volumes:
+    postgres_data:
+
+    networks:
+    go-postgres-network:
+      driver: bridge    
