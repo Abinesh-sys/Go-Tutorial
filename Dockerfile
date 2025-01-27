@@ -1,5 +1,7 @@
-FROM golang:1.17-alpine
+FROM golang:1.23 AS builder
 WORKDIR /app
 COPY . .
-RUN go build -o main .
-CMD ["./main"]
+RUN CGO_ENABLE=0 GOOS=linux go build -o go-tutorial .
+FROM scratch
+COPY --from=builder /app/go-tutorial .
+CMD ["./go-tutorial"]
