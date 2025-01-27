@@ -1,7 +1,13 @@
 package main
 
-import "fmt"
+import (
+
+	"fmt"
+) 
 
 func main() {
-    fmt.Println("Hello, World!")
+	var name string = "Abinesh"
+	var age int = 22
+	fmt.Printf("Name: %s\nAge: %d\n", name, age)
+
 }
