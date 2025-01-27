@@ -3,6 +3,8 @@ package main
 import (
 
 	"fmt"
+	"time"
+	"sync"
 ) 
 
 func main() {
@@ -20,9 +22,14 @@ func main() {
 		fmt.Println("Not best game")
 	}
 
-	for i:=0;i<5;i++ {
-		fmt.Println(i)
+	var wg sync.WaitGroup
+
+	for i :=0;i<50;i++ {
+		wg.Add(1)
+		go printNumber(i, &wg)
 	}
+	wg.Wait()
+
 
 	fmt.Println(add(5, 6))
 
@@ -37,4 +44,10 @@ func add(a int, b int) int {
 type Person struct {
 	Name string
 	Age int
+}
+
+func printNumber (n int, wg *sync.WaitGroup) {
+	defer wg.Done()
+	time.Sleep(1 *time.Second)
+	fmt.Println(n)
 }
